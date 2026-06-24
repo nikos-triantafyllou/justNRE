@@ -1,4 +1,3 @@
-
 .. image:: https://raw.githubusercontent.com/nikos-triantafyllou/justNRE/main/images/justNRE.png
 
 ===========================================
