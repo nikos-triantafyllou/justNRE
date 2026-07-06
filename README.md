@@ -1,5 +1,3 @@
-.. raw:: html
-
    <div align="center">
      <img src="images/justNRE.png">
    </div>
