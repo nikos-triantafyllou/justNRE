@@ -20,13 +20,13 @@ $$
 
 
 Classifier:
-\begin{equation}
+$$
     \tilde{p}(\boldsymbol{x}, \boldsymbol{\theta} \mid y) =
     \begin{cases} 
         p(\boldsymbol{x}, \boldsymbol{\theta}) & \text{if } y = 1, \\
         p(\boldsymbol{x}) p(\boldsymbol{\theta}) & \text{if } y = 0.
     \end{cases}
-\end{equation}
+$$
 
 
 How to get the ratio from the classifier:
