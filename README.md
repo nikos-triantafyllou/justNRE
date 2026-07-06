@@ -20,6 +20,7 @@ $$
 
 
 Classifier:
+
 $$
     \tilde{p}(\boldsymbol{x}, \boldsymbol{\theta} \mid y) =
     \begin{cases} 
