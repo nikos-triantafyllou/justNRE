@@ -191,34 +191,116 @@ def plot_confusion_matrix(X_norm, y, model):
 
 
 
-def generate_mock_nre_dataset(num_simulations=1000, num_features=5, seed=42):
-    """
-    Generates a pure NRE dataset where:
-    - Features (instances) contain both: [Observables (0 to N-1), Chi Parameter (Last Column)]
-    - Targets contain binary tags: 1 for Jointly drawn, 0 for Independently drawn.
-    """
+# def generate_mock_nre_dataset(num_simulations=1000, num_features=5, seed=42):
+#     """
+#     Generates a pure NRE dataset where:
+#     - Features (instances) contain both: [Observables (0 to N-1), Chi Parameter (Last Column)]
+#     - Targets contain binary tags: 1 for Jointly drawn, 0 for Independently drawn.
+#     """
+#     rng = np.random.default_rng(seed)
+    
+#     # Simulate the raw physical parameters (chi) matching a grid of 0.2 and 0.25
+#     chi_true = np.random.uniform(0.05, 0.45, size=(num_simulations, 1))
+    
+#     # Simulate observables that depend directly on chi + some physical noise
+#     observables = (chi_true * 4.0) + rng.normal(0, 0.05, size=(num_simulations, num_features))
+    
+#     # --- Create Joint Pairs (Label 1) ---
+#     X_joint = np.hstack([observables, chi_true])
+#     y_joint = np.ones((num_simulations, 1))
+    
+#     # --- Create Independent Pairs (Label 0) via 2-Value Swap ---
+#     # Since it's exactly 0.2 and 0.25, subtracting from 0.45 cleanly flips them
+#     chi_swapped = 0.45 - chi_true
+#     X_indep = np.hstack([observables, chi_swapped])
+#     y_indep = np.zeros((num_simulations, 1))
+    
+#     # Combine rows immutably
+#     X_all = np.vstack([X_joint, X_indep])
+#     y_all = np.vstack([y_joint, y_indep]).flatten()
+    
+#     # Global shuffle so 1s and 0s are completely mixed
+#     perm = rng.permutation(len(X_all))
+#     return X_all[perm], y_all[perm]
+
+# def generate_mock_nre_dataset(num_simulations=1000, num_features=5, seed=42):
+#     """
+#     Generates a pure NRE dataset where:
+#     - Features (instances) contain both: [Observables (0 to N-1), Chi Parameter (Last Column)]
+#     - Targets contain binary tags: 1 for Jointly drawn, 0 for Independently drawn.
+#     """
+#     rng = np.random.default_rng(seed)
+    
+#     # Simulate the raw physical parameters (chi)
+#     chi_true = rng.uniform(0.05, 0.45, size=(num_simulations, 1))
+    
+#     # Simulate observables that depend directly on chi + some physical noise
+#     observables = (chi_true * 4.0) + rng.normal(0, 0.05, size=(num_simulations, num_features))
+    
+#     # --- Create Joint Pairs (Label 1) ---
+#     X_joint = np.hstack([observables, chi_true])
+#     y_joint = np.ones((num_simulations, 1))
+    
+#     # --- Create Independent Pairs (Label 0) via random permutation ---
+#     # Marginal samples must be independent draws from p(chi), decoupled from
+#     # the paired observable. A permutation of chi_true does exactly that:
+#     # same marginal distribution, but shuffled so it no longer matches its
+#     # original observable.
+#     perm = rng.permutation(num_simulations)
+#     chi_indep = chi_true[perm]
+#     X_indep = np.hstack([observables, chi_indep])
+#     y_indep = np.zeros((num_simulations, 1))
+    
+#     # Combine rows immutably
+#     X_all = np.vstack([X_joint, X_indep])
+#     y_all = np.vstack([y_joint, y_indep]).flatten()
+    
+#     # Global shuffle so 1s and 0s are completely mixed
+#     global_perm = rng.permutation(len(X_all))
+#     return X_all[global_perm], y_all[global_perm]
+
+
+def generate_mock_raw_data(num_simulations=1000, num_features=5, seed=42):
     rng = np.random.default_rng(seed)
-    
-    # Simulate the raw physical parameters (chi) matching a grid of 0.2 and 0.25
-    chi_true = np.random.uniform(0.05, 0.45, size=(num_simulations, 1))
-    
-    # Simulate observables that depend directly on chi + some physical noise
-    observables = (chi_true * 4.0) + rng.normal(0, 0.05, size=(num_simulations, num_features))
-    
-    # --- Create Joint Pairs (Label 1) ---
-    X_joint = np.hstack([observables, chi_true])
-    y_joint = np.ones((num_simulations, 1))
-    
-    # --- Create Independent Pairs (Label 0) via 2-Value Swap ---
-    # Since it's exactly 0.2 and 0.25, subtracting from 0.45 cleanly flips them
-    chi_swapped = 0.45 - chi_true
-    X_indep = np.hstack([observables, chi_swapped])
-    y_indep = np.zeros((num_simulations, 1))
-    
-    # Combine rows immutably
-    X_all = np.vstack([X_joint, X_indep])
-    y_all = np.vstack([y_joint, y_indep]).flatten()
-    
-    # Global shuffle so 1s and 0s are completely mixed
-    perm = rng.permutation(len(X_all))
-    return X_all[perm], y_all[perm]
+    params_arr = rng.uniform(0.05, 0.45, size=(num_simulations, 1))
+    data_arr = (params_arr * 4.0) + rng.normal(0, 0.05, size=(num_simulations, num_features))
+    return data_arr, params_arr
+
+
+
+import corner
+import matplotlib.pyplot as plt
+# plt.style.use('default')
+def cornerplot1(data, theta_true, param_names, fig = None, color = None, name=None, weights=None):  
+    if len(theta_true)==1:
+        theta_true_ = None
+    else:
+        theta_true_=theta_true
+        
+    fig = corner.corner(
+    data,
+    bins=40,
+    hist_bin_factor=0.5,
+    weights = weights, 
+    fig = fig, 
+    color = color, 
+    levels = (0.68, 0.95), 
+    plot_contour=True,
+    fill_contours=True,
+    plot_density=False,
+    plot_datapoints=False,
+    labels = param_names,
+    smooth=1,
+    truths = theta_true_,
+    truth_color='black',
+    linestyle='--',
+    truth_kwargs={"linestyle":(0, (5, 5)), "linewidth": 1},
+    label_kwargs={"fontsize": 12},
+    contour_kwargs={"linestyles": "-", "alpha":0.2},
+    hist_kwargs = {"linewidth": 2, "density":True},
+    data_kwargs={"ms": 10},
+#     contourf_kwargs={"alpha": 0.1}
+    )
+    if len(theta_true)==1:
+        plt.axvline(theta_true, color='black')
+    return fig
