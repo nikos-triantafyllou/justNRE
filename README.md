@@ -12,11 +12,11 @@ When given data $d$ and parameters $\theta$, the goal is to find the posterior:
 $$ p(\boldsymbol\theta|\boldsymbol d) = \frac{p(\boldsymbol d|\boldsymbol \theta)\cdot p(\boldsymbol \theta)}{p(\boldsymbol d)} $$
 
 
-\begin{equation}
+$$
     r=\frac{p(\boldsymbol{x} \mid \boldsymbol{\theta})}{p(\boldsymbol{x})} 
     = \frac{p(\boldsymbol{\theta} \mid \boldsymbol{x})}{p(\boldsymbol{\theta})} 
     = \frac{p(\boldsymbol{x}, \boldsymbol{\theta})}{p(\boldsymbol{x}) p(\boldsymbol{\theta})}.
-\end{equation}
+$$
 
 
 Classifier:
