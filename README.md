@@ -7,7 +7,7 @@ An Occam's razor inspired Neural Ratio Estimation code for simulation-based infe
 
 This is a code to perform the Neural Ratio Estimation (NRE) flavor of Simulation Based Inference (SBI).
 
+When given data $d$ and parameters $\theta$,the goal is to find the posterior:
+
 $$ p(\boldsymbol\theta|\boldsymbol d) = \frac{p(\boldsymbol d|\boldsymbol \theta)\cdot p(\boldsymbol \theta)}{p(\boldsymbol d)} $$
 
-
-:math:`a^2 + b^2 = c^2`
