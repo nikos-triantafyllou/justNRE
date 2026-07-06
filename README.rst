@@ -12,3 +12,6 @@ This is a code to perform the Neural Ratio Estimation (NRE) flavor of Simulation
 .. math::
 
    p(\boldsymbol\theta|\boldsymbol d) = \frac{p(\boldsymbol d|\boldsymbol \theta)\cdot p(\boldsymbol \theta)}{p(\boldsymbol d)}
+
+
+:math:`a^2 + b^2 = c^2`
