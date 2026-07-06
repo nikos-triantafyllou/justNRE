@@ -1,10 +1,9 @@
-
 .. raw:: html
 
-   <p align="center">
+   <div align="center">
      <img src="images/justNRE.png">
-   </p>
+   </div>
 
-===========================================
-An Occam's razor inspired Neural Ratio Estimation code for simulation-based inderence
-===========================================
+===================================================================================
+An Occam's razor inspired Neural Ratio Estimation code for simulation-based inference
+===================================================================================
