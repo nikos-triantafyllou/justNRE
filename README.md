@@ -14,6 +14,10 @@ From the project root (same folder as `pyproject.toml`):
 ```bash
 pip install -e .
 ```
+or just simply 
+```bash
+pip install git+https://github.com/nikos-triantafyllou/justNRE.git
+```
 
 If you're on a machine without outbound internet access (e.g. an offline
 compute cluster), and `setuptools`/`wheel` are already available locally:
