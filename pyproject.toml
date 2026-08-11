@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "justNRE"
+version = "0.1.0"
+description = "Neural ratio estimation utilities for simulation-based inference"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "tensorflow",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "corner",
+    "ultranest",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["justNRE*"]
