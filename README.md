@@ -1,4 +1,10 @@
-# justNRE
+   <div align="center">
+     <img src="images/justNRE.png">
+   </div>
+
+An Occam's razor inspired Neural Ratio Estimation code for simulation-based inference
+======================================================================================
+
 
 A lightweight package for Neural Ratio Estimation (NRE), a simulation-based
 inference (SBI) technique: train a binary classifier to distinguish samples
