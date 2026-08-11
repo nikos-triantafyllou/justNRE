@@ -7,7 +7,7 @@ An Occam's razor inspired Neural Ratio Estimation code for simulation-based infe
 
 
 A lightweight package for Neural Ratio Estimation (NRE), a simulation-based
-inference (SBI) technique: train a binary classifier to distinguish samples
+inference technique: train a binary classifier to distinguish samples
 drawn from the joint distribution `p(x, theta)` versus the product of
 marginals `p(x)p(theta)`, then use the classifier's output as an estimate of
 the likelihood-to-evidence ratio, `p(x|theta) / p(x)`, for downstream
