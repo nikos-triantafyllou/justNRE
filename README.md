@@ -71,8 +71,8 @@ plot).
 
 ```
 justNRE/
-├── data.py          # prepare_for_NRE, split, normalize
-├── training.py      # build_smooth_mlp, train_nre_ensemble, ensemble_predict
+├── data.py           # prepare_for_NRE, split, normalize
+├── training.py       # build_smooth_mlp, train_nre_ensemble, ensemble_predict
 ├── inference.py      # log_ratio_vectorized, run_grid_search
 ├── diagnostics.py    # plot_confusion_matrix, cornerplot1
 └── mock.py           # generate_mock_raw_data (for the tutorial only)
